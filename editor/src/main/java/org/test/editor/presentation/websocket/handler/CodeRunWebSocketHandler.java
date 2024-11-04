@@ -50,6 +50,7 @@ public class CodeRunWebSocketHandler extends TextWebSocketHandler {
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) {
+        logger.info("finish code run");
         codeRunCommandHandler.cleanup(session);
         Integer projectId = (Integer) session.getAttributes().get("projectId");
         if (projectId != null) {

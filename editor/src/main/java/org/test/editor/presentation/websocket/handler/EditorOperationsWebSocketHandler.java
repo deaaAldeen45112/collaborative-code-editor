@@ -58,7 +58,7 @@ public class EditorOperationsWebSocketHandler extends TextWebSocketHandler {
     }
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) {
-
+        logger.info("finish my connection");
         Integer projectId = (Integer) session.getAttributes().get("projectId");
         if (projectId != null) {
             sessionManager.removeProjectSession(projectId, session);
