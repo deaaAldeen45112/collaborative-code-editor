@@ -1,0 +1,51 @@
+<div class="editor-container">
+    <div class="sidebar">
+        <monaco-tree
+            [theme]="dark ? 'vs-dark' : 'vs-light'"
+            [tree]="tree"
+            height="100%"
+            width="250px"
+            (clickFile)="handleFileClick($event)"
+            (clickContextMenu)="handleContextMenu($event)"
+        ></monaco-tree>
+    </div>
+    
+    <div class="main-content">
+        <div #editorContainer  class="editor">
+            
+            <div style="display: flex;">
+                <div style="flex: 1;" class="tab-header bg-dark text-white p-2">
+                    {{ currentFileName || 'No file opened' }} 
+                </div>
+                <button class="history-button" (click)="toggleHistory()">History</button>
+            </div>
+          
+           
+            <div class="range-input-container" *ngIf="showRangeInput" style="width: 100%;">
+                <div  style="display: flex; justify-content: space-between;">
+                    <label for="vol"  style="padding-left: 10px;" class="range-label">coder name: {{coderName}} </label>
+                    <label for="vol"  style="padding-right: 10px;" class="range-label">version: {{versionNumber}} -   {{ timestamp | date:'yyyy-MM-dd HH:mm:ss' }}</label>
+                </div>
+                <input type="range"  [(ngModel)]="selectedVersion" id="vol" value="{{numVersions-1}}"  name="vol" min="0" [max]="numVersions-1"  (input)="valueChanged($event)" style="width: 100% !important; ">
+                <div style="display: flex; justify-content: space-between;">
+                    <button class="history-button" (click)="resetEditor()">Reset edtior to here</button>
+                </div>
+                
+            </div>
+           
+        </div>
+        
+        <div class="console-pane">
+            <div class="tab-header">
+                <button (click)="selectTab('console')" [class.active]="selectedTab === 'console'">Console</button>
+                <button (click)="selectTab('chat')" [class.active]="selectedTab === 'chat'">Chat</button>
+            </div>
+            <div *ngIf="selectedTab === 'console'" style="height: 100%;">
+                <app-console style="height: 100%;"></app-console>
+            </div>
+            <div *ngIf="selectedTab === 'chat'" style="height: 100%;">
+                <app-chat style="height: 100%;"></app-chat>
+            </div>
+        </div>
+    </div>
+</div>

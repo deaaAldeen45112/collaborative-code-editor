@@ -1,0 +1,113 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      maria-db:
+        image: mariadb:latest
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_ROOT_PASSWORD: 123456
+          MYSQL_DATABASE: code_editor
+        volumes:
+          - db_data:/var/lib/mysql
+          - ./db/code_editor.sql:/docker-entrypoint-initdb.d/code_editor.sql
+
+    steps:
+    - name: Clean up workspace
+      run: |
+        sudo rm -rf /home/runner/work/collaborative-code-editor/collaborative-code-editor/*
+
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        clean: true
+        submodules: false
+        ref: main
+
+    - name: Set up Docker
+      uses: docker/setup-buildx-action@v1
+
+    - name: Install Docker Compose
+      run: |
+        DOCKER_COMPOSE_VERSION=1.29.2  # Specify the desired version here
+        sudo curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+        sudo chmod +x /usr/local/bin/docker-compose
+
+    - name: Build and Run Docker Compose
+      run: |
+        docker-compose up --build -d
+        # Optional: run your tests here
+        # Example: docker-compose exec -T backend-editor-service ./run_tests.sh
+    
+    - name: List Docker Images
+      run: docker images
+
+    - name: Publish Docker Images to Docker Hub
+      run: |
+        # Log in to Docker Hub
+        echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
+        
+        docker tag collaborative-code-editor_backend-editor-service deaa45112/backend-editor
+        docker push deaa45112/backend-editor
+        
+        # Tag and push the frontend image
+        docker tag collaborative-code-editor_frontend deaa45112/angular-frontend
+        docker push deaa45112/angular-frontend
+
+    - name: Shutdown services
+      run: docker-compose down
+
+    - name: Set up SSH key
+      run: |
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > private_key.pem
+        chmod 600 private_key.pem
+
+    - name: Copy Docker Compose file to EC2
+      run: |
+        scp -o StrictHostKeyChecking=no -i private_key.pem docker-compose.aws.yml ubuntu@ec2-18-234-150-209.compute-1.amazonaws.com:/home/ubuntu/collaborative-code-editor/docker-compose.yml
+    
+    - name: Copy db folder to EC2
+      run: |
+        scp -o StrictHostKeyChecking=no -i private_key.pem -r ./db ubuntu@ec2-18-234-150-209.compute-1.amazonaws.com:/home/ubuntu/collaborative-code-editor/
+   
+    - name: Deploy on AWS EC2
+      run: |
+        ssh -o StrictHostKeyChecking=no -i private_key.pem ubuntu@ec2-18-234-150-209.compute-1.amazonaws.com << 'EOF'
+          cd /home/ubuntu/collaborative-code-editor
+          # Remove all containers
+          docker rm -f $(docker ps -aq) || true 
+
+          # Remove all images
+          docker rmi -f $(docker images -q) || true 
+
+          # Remove all volumes
+          docker volume rm $(docker volume ls -q) || true 
+          docker volume prune -f 
+          #Remove all
+          docker system prune -a -f
+
+
+          
+          docker pull gcc:latest
+
+          # Start containers in detached mode
+          docker-compose up --build -d
+        EOF
+
+    - name: Cleanup SSH key
+      run: |
+        rm -f private_key.pem  # Clean up the temporary SSH key file
+
+    

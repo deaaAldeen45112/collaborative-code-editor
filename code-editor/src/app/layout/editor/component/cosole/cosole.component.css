@@ -1,0 +1,53 @@
+.console-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    font-family: 'Courier New', monospace;
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+  }
+  .console-header {
+    padding: 10px;
+    border-bottom: 1px solid #333;
+  }
+  .welcome-message {
+    margin-bottom: 10px;
+  }
+  .run-button {
+    padding: 5px 10px;
+    background-color: #0e639c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .run-button:hover {
+    background-color: #1177bb;
+  }
+  .console-output {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    max-height: 460px;
+    border-bottom: 1px solid #333;
+  }
+  .console-output pre {
+    margin: 8px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  .console-input-container {
+    padding: 10px;
+     width: 100%;
+    justify-content: end;
+    background-color: #252526;
+    flex-shrink: 0;
+  }
+  .console-input {
+    width: 100%;
+    padding: 5px;
+    background-color: #333;
+    color: #d4d4d4;
+    border: none;
+    font-family: inherit;
+  }

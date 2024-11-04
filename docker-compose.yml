@@ -1,0 +1,49 @@
+version: '3.4'
+services:
+
+  backend-editor-service:
+    build: ./editor
+    container_name: editor
+    ports:
+      - "8002:8002"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - code-editor-storage:/app/code-editor-storage
+      - scripts:/app/scripts
+    environment:
+      - spring.datasource.url=jdbc:mariadb://maria-db:3306/code_editor
+      - spring.datasource.password=123456
+    depends_on:
+      maria-db:
+        condition: service_healthy
+
+  maria-db:
+    image: mariadb:latest
+    container_name: maria-db
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_DATABASE=code_editor
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./db/code_editor.sql:/docker-entrypoint-initdb.d/code_editor.sql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      start_period: 100s
+      interval: 10s
+      timeout: 10s
+      retries: 6
+
+  frontend:
+    build: ./code-editor
+    container_name: angular-frontend
+    ports:
+      - "4200:80" 
+    depends_on:
+      - backend-editor-service
+
+volumes:
+  db_data:
+  code-editor-storage:
+  scripts:

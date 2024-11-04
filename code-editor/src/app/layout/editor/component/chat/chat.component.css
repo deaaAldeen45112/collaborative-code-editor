@@ -1,0 +1,151 @@
+.console-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    font-family: 'Courier New', monospace;
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+  }
+  .console-header {
+    padding: 10px;
+    border-bottom: 1px solid #333;
+  }
+  .welcome-message {
+    margin-bottom: 10px;
+  }
+  .run-button {
+    padding: 5px 10px;
+    background-color: #0e639c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .run-button:hover {
+    background-color: #1177bb;
+  }
+  .console-output {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    max-height: 460px;
+    border-bottom: 1px solid #333;
+  }
+  .console-output pre {
+    margin: 8px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  .console-input-container {
+    padding: 10px;
+     width: 100%;
+    justify-content: end;
+    background-color: #252526;
+    flex-shrink: 0;
+  }
+  .console-input {
+    width: 100%;
+    padding: 5px;
+    background-color: #333;
+    color: #d4d4d4;
+    border: none;
+    font-family: inherit;
+  }
+
+
+  .discussion-item {
+    padding: 10px;
+    border-bottom: 1px solid #444;
+    cursor: pointer;
+  }
+  
+  .discussion-item:hover {
+    background-color: #3e3e3e;
+  }
+  
+  .discussion-comments-container {
+    padding: 20px;
+  }
+  
+  .back-button {
+    background-color: #4a90e2;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 20px;
+    border-radius: 5px;
+  }
+  
+  .back-button:hover {
+    background-color: #357ab7;
+  }
+  
+  .discussion-comments {
+    background-color: #1e1e1e;
+    padding: 10px;
+    margin-top: 10px;
+    list-style-type: none;
+  }
+  
+  .discussion-comments li {
+    padding: 5px 0;
+    border-bottom: 1px solid #444;
+  }
+  .discussion-date {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-top: 5px;
+  }
+  .discussion-comments-container {
+    padding: 20px;
+  }
+  
+  .back-button {
+    background-color: #4a90e2;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 20px;
+    border-radius: 5px;
+  }
+  
+  .back-button:hover {
+    background-color: #357ab7;
+  }
+  
+  .discussion-comments {
+    margin-top: 10px;
+  }
+  
+  /* Comment styling */
+  .comment-left {
+    background-color: #3e3e3e;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 5px 0;
+    text-align: left;
+  }
+  
+  .comment-right {
+    background-color: #4a90e2;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 5px 0;
+    text-align: right;
+    color: white;
+  }
+  
+  /* Header for comment */
+  .comment-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+  }
+  
+  .comment-date {
+    color: #aaa;
+  }

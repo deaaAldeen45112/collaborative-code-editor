@@ -1,0 +1,6 @@
+@import "../node_modules/@ng-select/ng-select/themes/default.theme.css";
+.toast-bottom-center {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }

@@ -1,0 +1,162 @@
+
+
+<div class="page-header d-print-none">
+    <div class="container-xl">
+      <div class="row g-2 align-items-center">
+        <div class="col">
+          <div class="page-pretitle">
+            Overview
+          </div>
+          <h2 class="page-title">
+            Invitations
+          </h2>
+        </div>
+        <div class="col-auto ms-auto d-print-none">
+          <div class="btn-list">
+            <span class="d-none d-sm-inline">
+  
+            </span>
+            <a class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal"
+               data-bs-target="#modal-invitation-create" >
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                   stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                   stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M12 5l0 14"/>
+                <path d="M5 12l14 0"/>
+              </svg>
+              create new Invitation
+            </a>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="page-body">
+    <div class="container-xl">
+      <div class="card" style="padding : 20px; ">
+        <div class="btn-group" style="width: 30%; display: flex;" role="group" aria-label="Invitation Tabs">
+          <button 
+            type="button" 
+            class="btn" 
+            style="flex: 1;"
+            [ngClass]="{'btn-primary': selectedTab === 'received'}" 
+            (click)="showReceivedInvitations()">
+            Received Invitations
+          </button>
+          <button 
+            type="button" 
+            class="btn" 
+            style="flex: 1;"
+            [ngClass]="{'btn-primary': selectedTab === 'sent'}" 
+            (click)="showSentInvitations()">
+            Sent Invitations
+          </button>
+        </div>
+        
+        <div class="d-flex justify-content-end">
+          <input type="text" class="form-control" style="width: 30%;" placeholder="Search..."
+          (keyup)="updateInvitationFilter($event)"/>
+        </div>
+        <br>
+        <ngx-datatable
+          class="material"
+          [rows]="invitations"
+          [columnMode]="'force'"
+          [headerHeight]="50"
+          [footerHeight]="50"
+          [rowHeight]="'auto'"
+          [limit]="5"
+          style="border: 1px solid #ddd; border-radius: 4px;"
+          [scrollbarH]="true"
+          [sortType]=SortType.multi
+        
+        >
+          <ngx-datatable-column name="User Name" prop="userName" [sortable]="true"></ngx-datatable-column>
+          <ngx-datatable-column name="Project Name" prop="projectName" [sortable]="true"></ngx-datatable-column>
+          <ngx-datatable-column name="Status Name" prop="statusName" [sortable]="true"></ngx-datatable-column>
+          <ngx-datatable-column name="Created At" prop="invitationSentAt" [sortable]="true">
+            <ng-template ngx-datatable-cell-template let-value="value">
+              {{ value | date:'yyyy-MM-dd HH:mm:ss' }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Expired At" prop="expiresAt" [sortable]="true">
+            <ng-template ngx-datatable-cell-template let-value="value">
+              {{ value | date:'yyyy-MM-dd HH:mm:ss' }}
+            </ng-template>
+          </ngx-datatable-column>
+          <!-- Actions column for updating and deleting plans -->
+          <ngx-datatable-column name="Actions" [width]="130" [sortable]="false">
+            <ng-template ngx-datatable-cell-template let-row="row">
+              <!-- Update button -->
+        
+              <ng-container *ngIf="selectedTab !== 'sent'">
+                <!-- Update button -->
+                <button class="btn btn-primary btn-sm" style="margin-right: 2px"
+                        (click)="acceptInvitation(row.invitationId)">Accept</button>
+                <!-- Delete button -->
+                <button class="btn btn-danger btn-sm"
+                        (click)="rejectInvitation(row.invitationId)">Reject</button>
+              </ng-container>
+
+
+         
+
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+      </div>
+    </div>
+  </div>
+  
+  
+ 
+  <!-- todo: Create Invitation -->
+  <div class="modal modal-blur" id="modal-invitation-create" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Create New Invitation</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="createInvitationForm" (ngSubmit)="createInvitation()">
+         
+            <div class="mb-3">
+              <label class="form-label">Project Name</label>
+              <select class="form-control" formControlName="projectId">
+                <option value="">Select Project</option>
+                <option *ngFor="let project of projects" [value]="project.projectId">{{project.projectName}}</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <ng-select
+                [items]="users"                       
+                bindLabel="name"                        
+                bindValue="userId"                      
+                [searchable]="true"                     
+                [typeahead]="searchUser$"               
+                formControlName="userId"               
+              
+              >
+                <!-- Custom item template to show name and email -->
+                <ng-template ng-label-tmp let-item="item">
+                  {{ item.name }} ({{ item.email }})
+                </ng-template>
+                <ng-template ng-option-tmp let-item="item" let-index="index">
+                  {{ item.name }} - {{ item.email }}
+                </ng-template>
+              </ng-select>
+            </div>
+          
+            <div class="modal-footer">
+              <button type="button" class="btn btn-link link-secondary" data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" data-bs-dismiss="modal" class="btn btn-primary" [disabled]="createInvitationForm.invalid">Create Invitation</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,149 @@
+/*.editor-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw; 
+  }
+  
+  .sidebar {
+   width: 250px;
+  
+  }
+  
+  .editor {
+    flex-grow: 1;
+    height: 100%; 
+   
+  }
+  .tab-header {
+    display: flex;
+    align-items: center;
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    padding: 5px 10px;
+    border-bottom: 1px solid #333;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 3px 3px 0 0;
+  }
+
+  */
+  .editor-container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.sidebar {
+  
+    height: 100%;
+    overflow-y: auto;
+    border-right: 1px solid #333;
+    transition: width 0.3s ease;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    height: 100%;
+    overflow: hidden;
+}
+
+.editor {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-width: 0; /* Allows the editor to shrink below its content size */
+}
+
+.tab-header {
+    display: flex;
+    align-items: center;
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    padding: 5px 10px;
+    border-bottom: 1px solid #333;
+    font-size: 14px;
+    font-weight: bold;
+
+}
+
+.monaco-container {
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.console-pane {
+    width: 300px;
+    height: 100%;
+    border-left: 1px solid #333;
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: width 0.3s ease;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+  
+}
+
+@media (max-width: 992px) {
+ 
+}
+
+@media (max-width: 576px) {
+
+}.tab-header {
+    display: flex;
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    padding: 5px;
+    border-bottom: 1px solid #333;
+}
+
+.tab-header button {
+    flex: 1;
+    padding: 10px;
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.tab-header button.active {
+    background-color: #333;
+    font-weight: bold;
+}
+
+.range-input-container {
+  background-color: #252526;
+}
+
+.range-label {
+  color: #d4d4d4;
+
+}
+.history-button {
+  margin-left: auto;
+  padding: 5px 10px;
+  background-color: #0e639c;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+
+  transition: background-color 0.3s ease;
+}
+
+.history-button:hover {
+  background-color: #1177bb;
+}

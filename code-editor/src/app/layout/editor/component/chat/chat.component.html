@@ -1,0 +1,54 @@
+
+
+  <div class="console-container">
+    <div class="console-header">
+      <div class="welcome-message">Welcome to discussions</div>
+    </div>
+  
+    <!-- Show discussion list only if no discussion is selected -->
+    <div class="console-output" *ngIf="!selectedDiscussionId">
+      <div 
+        *ngFor="let discussion of discussions" 
+        class="discussion-item" 
+        (click)="selectDiscussion(discussion.discussionId)">
+        <div class="discussion-topic">
+          {{ discussion.topic }} (Start Line: {{ discussion.startLineNum }})
+        </div>
+        <div class="discussion-date">
+            Created At: {{ discussion.createdAt | date:'short' }}
+          </div>
+          <div class="discussion-date">
+            File Path: {{ discussion.filePath }}
+          </div>
+      </div>
+    </div>
+  
+    <div class="discussion-comments-container " *ngIf="selectedDiscussionId">
+        <button class="back-button" (click)="clearSelectedDiscussion()">Back to Discussions</button>
+    
+        <h3>Comments for Discussion: {{ selectedDiscussionId }}</h3>
+        <div class="discussion-comments console-output" style="height: 300px; overflow-x: auto; overflow-y: auto;">
+          <div *ngFor="let comment of comments"
+               [ngClass]="{'comment-left': comment.userId === this.userId, 'comment-right': comment.userId !== this.userId}">
+            
+            <div class="comment-header" >
+              <strong>{{ comment.userName }}</strong>
+              <span class="comment-date">{{ comment.createdAt | date:'short' }}</span>
+            </div>
+            <div class="comment-content">
+              {{ comment.content }}
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="console-input-container">
+        <input 
+          class="console-input"
+          [(ngModel)]="currentInput"
+          (keyup.enter)="inputComment()"
+          placeholder="Enter command..."
+        >
+      </div> 
+
+  </div>
+  

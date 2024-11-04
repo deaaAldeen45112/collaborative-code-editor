@@ -1,0 +1,93 @@
+@startuml
+
+
+
+      class WebSocketCommandRegistry {
+
+          }
+
+      class EditorOperationsWebSocketHandler{
+
+                }
+         class CodeRunCommandHandler{
+ +canHandle(String action) bool
+           +handle(WebSocketSession, Message) void
+                       }
+class CodeRunWebSocketHandler{
+
+                       }
+              class LspCommandHandler{
+ +canHandle(String action) bool
+           +handle(WebSocketSession, Message) void
+                                 }
+  class LspWebSocketHandler{
+           }
+       abstract BaseCommandHandler  {
+
+           +canHandle(String action)* bool
+           +handle(WebSocketSession, Message)* void
+       }
+
+       class FileCommandHandler {
+           +canHandle(String action) bool
+           +handle(WebSocketSession, Message) void
+
+            }
+
+       class FolderCommandHandler {
+           +canHandle(String action) bool
+           +handle(WebSocketSession, Message) void
+               }
+
+       class DiscussionCommandHandler {
+           +canHandle(String action) bool
+           +handle(WebSocketSession, Message) void
+            }
+
+       class WebSocketSessionManager {
+          }
+
+       class WebSocketMessageBroadcaster {
+          }
+
+       enum  FileCommand {
+
+
+       }
+
+       enum  FolderCommand {
+
+
+       }
+
+       enum  DiscussionCommand  {
+
+
+       }
+        enum  CodeRunCommand  {
+
+
+              }
+        EditorOperationsWebSocketHandler *--- WebSocketSessionManager
+        EditorOperationsWebSocketHandler *- WebSocketCommandRegistry
+       CodeRunWebSocketHandler *- WebSocketCommandRegistry
+       LspWebSocketHandler *- WebSocketCommandRegistry
+       EditorOperationsWebSocketHandler *-- BaseCommandHandler
+       CodeRunWebSocketHandler *-- BaseCommandHandler
+       LspWebSocketHandler *-- BaseCommandHandler
+
+       BaseCommandHandler <|-- FileCommandHandler
+       BaseCommandHandler <|-- FolderCommandHandler
+       BaseCommandHandler <|-- DiscussionCommandHandler
+       BaseCommandHandler <|-- CodeRunCommandHandler
+       BaseCommandHandler <|-- LspCommandHandler
+       BaseCommandHandler *-- WebSocketMessageBroadcaster
+       WebSocketMessageBroadcaster *-- WebSocketSessionManager
+       FileCommandHandler -- FileCommand
+       CodeRunCommandHandler -- CodeRunCommand
+       FolderCommandHandler -- FolderCommand
+       DiscussionCommandHandler -- DiscussionCommand
+
+
+
+@enduml

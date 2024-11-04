@@ -1,0 +1,137 @@
+<div class="page page-center">
+    <div class="container container-tight py-4">
+        <div class="text-center mb-4">
+            <a href="." class="navbar-brand navbar-brand-autodark">
+                <!-- <img src="./static/logo.svg" width="110" height="32" alt="Tabler" class="navbar-brand-image"> -->
+            </a>
+        </div>
+        <div class="card card-md">
+            <div class="card-body">
+                <h2 class="h2 text-center mb-4">Sing in to your account</h2>
+                <form [formGroup]="loginForm" method="get" (ngSubmit)="login()">
+
+
+                    <!-- todo: email form feild -->
+                    <app-input placeholder="ex@mail.com" [formGroup]="loginForm" controlName="email" label="Email"
+                        [type]="'email'"
+                        [errorMessages]="{
+                            required: AppMessages.REQUIRED_FIELD,
+                            email: AppMessages.INVALID_EMAIL
+                        }">
+                    </app-input>
+                    <br>
+                    <!-- todo: password form feild -->
+                    <app-input [formGroup]="loginForm" controlName="password" label="Password"
+                    [type]="'password'"
+                    [placeholder]="'Enter your password'"
+                    [errorMessages]="{
+                    required: AppMessages.REQUIRED_FIELD,
+                    minLength: AppMessages.PASSWORD_LENGTH
+                    }">
+            </app-input>
+                    <br>
+                    <label class="form-label">
+                        <span class="form-label-description">
+                            <a routerLink="/auth/forget-password">I forgot password</a>
+                        </span>
+                    </label>
+                    <div class="mb-2">
+                      <label class="form-check">
+                        <input type="checkbox" class="form-check-input" formControlName="rememberMe" />
+                        <span class="form-check-label">Remember me on this device</span>
+                      </label>
+                  </div>
+                    <div class="form-footer">
+                        <button [disabled]="!loginForm.valid" type="submit" class="btn btn-primary w-100">Sign in</button>
+                    </div>
+                </form>
+            </div>
+            <div class="hr-text">or</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col" (click)="redirectToGithub()"><a  class="btn w-100 custom-btn" style="cursor: pointer; " 
+                       >
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon text-github" width="24" height="24"
+                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path
+                                    d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+                            </svg>
+                            Sign in with Github
+                        </a></div>
+                    <div class="col" (click)="this.loginByGmail();">
+                         <asl-google-signin-button
+                         type="standard"
+                         shape="rectangular"
+                         theme="outline"
+                         text="signin_with"
+                         size="large"
+                         logo_alignment="left"
+                         text="signin_with"
+                         >
+                       </asl-google-signin-button>
+                        
+                    
+                      </div>
+                        
+                </div>
+            </div>
+        </div>
+        <div class="text-center text-secondary mt-3">
+          Don't have account yet? <a routerLink="/auth/sign-up" tabindex="-1">Sign up</a> or go to <a routerLink="/" tabindex="-1">Home</a>
+      </div>
+    </div>
+</div>
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+  <div class="col-lg-8">
+    <form [formGroup]="contactForm" (ngSubmit)="createContact()" method="post" class="php-email-form"
+     >
+      <div class="row gy-4">
+        <app-input placeholder="your name" [formGroup]="contactForm" controlName="name" label="Full Name"
+          [type]="'text'" [errorMessages]="{
+              required: AppMessages.REQUIRED_FIELD,
+          }">
+        </app-input>
+        <app-input placeholder="ex@mail.com" [formGroup]="contactForm" controlName="email" label="Email"
+          [type]="'email'" [errorMessages]="{
+              required: AppMessages.REQUIRED_FIELD,
+              email: AppMessages.INVALID_EMAIL
+          }">
+        </app-input>
+
+        <app-input placeholder="subject" [formGroup]="contactForm" controlName="phone" label="subject"
+          [type]="'text'" [errorMessages]="{
+              required: AppMessages.REQUIRED_FIELD,
+          }">
+        </app-input>
+
+        <app-input placeholder="message" [formGroup]="contactForm" controlName="message" label="subject"
+        [type]="'text'" [errorMessages]="{
+            required: AppMessages.REQUIRED_FIELD,
+        }">
+      </app-input>
+
+        <div class="col-md-12 text-center">
+          <button [disabled]="!contactForm.valid" type="submit" class="btn btn-primary w-100">Send Message</button>
+        </div>
+      </div>
+    </form>
+  </div>
+   -->

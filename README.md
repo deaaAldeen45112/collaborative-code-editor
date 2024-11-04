@@ -1,1 +1,1 @@
-#collaborative-code-edito
+# collaborative-code-editor

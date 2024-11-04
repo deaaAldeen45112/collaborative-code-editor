@@ -1,0 +1,26 @@
+<div class="page-body">
+  <div class="container-xl">
+    <div class="card">
+      <div class="row g-0">
+        <div class="col-12 col-md-3 border-end">
+          <div class="card-body">
+            <h4 class="subheader">{{ getUserDashboard() }}</h4>
+            <div class="list-group list-group-transparent">
+              <a routerLink="my-account" routerLinkActive="active" class="list-group-item list-group-item-action d-flex align-items-center">My Account</a>
+              <a routerLink="update-email"  routerLinkActive="active"class="list-group-item list-group-item-action d-flex align-items-center">Update E-mail</a>
+              <a routerLink="update-phone" routerLinkActive="active" class="list-group-item list-group-item-action d-flex align-items-center">Update Phone</a>
+              <a routerLink="update-name" routerLinkActive="active" class="list-group-item list-group-item-action d-flex align-items-center">Update Name</a>
+              <a routerLink="update-password" routerLinkActive="active" class="list-group-item list-group-item-action d-flex align-items-center">Update Password</a>
+              <a routerLink="choose-plan" routerLinkActive="active" class="list-group-item list-group-item-action d-flex align-items-center" *ngIf="userRole === examProviderRole">Choose Plan</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-9 d-flex flex-column">
+          <div class="card-body">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

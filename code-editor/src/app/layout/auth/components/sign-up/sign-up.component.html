@@ -1,0 +1,127 @@
+
+<div class="page page-center">
+    <div class="container container-tight py-4">
+        <div class="text-center mb-4">
+            <a href="." class="navbar-brand navbar-brand-autodark">
+                <!-- <img src="./static/logo.svg" width="110" height="32" alt="Tabler" class="navbar-brand-image"> -->
+            </a>
+        </div>
+        <div class="card card-md">
+            <div class="card-body">
+                <h2 class="h2 text-center mb-4">Sing up to your account</h2>
+                <form [formGroup]="registerForm" (ngSubmit)="register()">
+
+
+                    <app-input placeholder="ex@mail.com" [formGroup]="registerForm" controlName="name" label="Name"
+                    [type]="'text'"
+                    [errorMessages]="{
+                        required: AppMessages.REQUIRED_FIELD
+                    }">
+                </app-input>
+                <br>
+                    <!-- todo: email form feild -->
+                    <app-input placeholder="ex@mail.com" [formGroup]="registerForm" controlName="email" label="Email"
+                        [type]="'email'"
+                        [errorMessages]="{
+                            required: AppMessages.REQUIRED_FIELD,
+                            email: AppMessages.INVALID_EMAIL
+                        }">
+                    </app-input>
+                <br>
+                 
+                    <!-- todo: password form feild -->
+                    <app-input [formGroup]="registerForm" controlName="password" label="Password"
+                    [type]="'password'"
+                    [placeholder]="'Enter your password'"
+                    [errorMessages]="{
+                    required: AppMessages.REQUIRED_FIELD,
+                    minLength: AppMessages.PASSWORD_LENGTH
+                    }">
+                </app-input>
+                <br>
+                <!--
+                    <app-input [formGroup]="registerForm" controlName="confirmPassword" label="Confirm Password"
+                    [type]="'password'"
+                    [placeholder]="'Enter your password'"
+                    [errorMessages]="{
+                    required: AppMessages.REQUIRED_FIELD,
+                    minLength: AppMessages.PASSWORD_LENGTH
+                    }">
+                </app-input>
+                -->
+            <br>
+                    <label class="form-label">
+                        <span class="form-label-description">
+                            <a routerLink="/auth/forget-password">I forgot password</a>
+                        </span>
+                    </label>
+                    <div class="mb-2">
+                      <label class="form-check">
+                        <input type="checkbox" class="form-check-input" formControlName="rememberMe" />
+                        <span class="form-check-label">Remember me on this device</span>
+                      </label>
+                  </div>
+                    <div class="form-footer">
+                        <button [disabled]="!registerForm.valid" type="submit" class="btn btn-primary w-100">Sign up</button>
+                    </div>
+                </form>
+            </div>
+        
+        </div>
+        <div class="text-center text-secondary mt-3">
+          Don't have account yet? <a routerLink="/auth/sign-in" tabindex="-1">Sign in</a> or go to <a routerLink="/" tabindex="-1">Home</a>
+      </div>
+    </div>
+</div>
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+  <div class="col-lg-8">
+    <form [formGroup]="contactForm" (ngSubmit)="createContact()" method="post" class="php-email-form"
+     >
+      <div class="row gy-4">
+        <app-input placeholder="your name" [formGroup]="contactForm" controlName="name" label="Full Name"
+          [type]="'text'" [errorMessages]="{
+              required: AppMessages.REQUIRED_FIELD,
+          }">
+        </app-input>
+        <app-input placeholder="ex@mail.com" [formGroup]="contactForm" controlName="email" label="Email"
+          [type]="'email'" [errorMessages]="{
+              required: AppMessages.REQUIRED_FIELD,
+              email: AppMessages.INVALID_EMAIL
+          }">
+        </app-input>
+
+        <app-input placeholder="subject" [formGroup]="contactForm" controlName="phone" label="subject"
+          [type]="'text'" [errorMessages]="{
+              required: AppMessages.REQUIRED_FIELD,
+          }">
+        </app-input>
+
+        <app-input placeholder="message" [formGroup]="contactForm" controlName="message" label="subject"
+        [type]="'text'" [errorMessages]="{
+            required: AppMessages.REQUIRED_FIELD,
+        }">
+      </app-input>
+
+        <div class="col-md-12 text-center">
+          <button [disabled]="!contactForm.valid" type="submit" class="btn btn-primary w-100">Send Message</button>
+        </div>
+      </div>
+    </form>
+  </div>
+   -->
