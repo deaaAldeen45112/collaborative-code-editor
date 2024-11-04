@@ -20,7 +20,7 @@ public class EditorOperationsWebSocketHandler extends TextWebSocketHandler {
     private final MessageParser messageParser;
     private final WebSocketCommandRegistry commandRegistry;
     private final WebSocketSessionManager sessionManager;
-    private static final Logger logger = LoggerFactory.getLogger(CodeRunWebSocketHandler.class);
+    private static final Logger logger = LoggerFactory.getLogger(EditorOperationsWebSocketHandler.class);
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {

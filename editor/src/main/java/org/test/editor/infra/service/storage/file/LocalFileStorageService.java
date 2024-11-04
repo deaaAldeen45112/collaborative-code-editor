@@ -17,6 +17,7 @@ public class LocalFileStorageService implements FileStorageService {
     private final Path rootLocation = Paths.get("code-editor-storage");
     private static final Set<String> ALLOWED_EXTENSIONS = new HashSet<>() {{
         add(".cpp");
+        add(".h");
         add(".py");
     }};
     private final ConcurrentHashMap<String, Lock> fileLocks = new ConcurrentHashMap<>();
