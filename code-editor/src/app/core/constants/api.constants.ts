@@ -1,5 +1,5 @@
-const BASE_URL = 'http://ec2-18-234-150-209.compute-1.amazonaws.com:8002/api';
-const DOMAIN = 'ec2-18-234-150-209.compute-1.amazonaws.com:8002';
+const BASE_URL = 'http://ec2-54-81-143-14.compute-1.amazonaws.com:8002/api';
+const DOMAIN = 'ec2-54-81-143-14.compute-1.amazonaws.com:8002';
 const AUTH_PATH = `/auth`;
 const PROJECT_PATH = `/projects`;
 const FILE_PATH = `/files`;

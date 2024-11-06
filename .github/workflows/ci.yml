@@ -76,15 +76,15 @@ jobs:
 
     - name: Copy Docker Compose file to EC2
       run: |
-        scp -o StrictHostKeyChecking=no -i private_key.pem docker-compose.aws.yml ubuntu@ec2-18-234-150-209.compute-1.amazonaws.com:/home/ubuntu/collaborative-code-editor/docker-compose.yml
+        scp -o StrictHostKeyChecking=no -i private_key.pem docker-compose.aws.yml ubuntu@ec2-54-81-143-14.compute-1.amazonaws.com:/home/ubuntu/collaborative-code-editor/docker-compose.yml
     
     - name: Copy db folder to EC2
       run: |
-        scp -o StrictHostKeyChecking=no -i private_key.pem -r ./db ubuntu@ec2-18-234-150-209.compute-1.amazonaws.com:/home/ubuntu/collaborative-code-editor/
+        scp -o StrictHostKeyChecking=no -i private_key.pem -r ./db ubuntu@ec2-54-81-143-14.compute-1.amazonaws.com:/home/ubuntu/collaborative-code-editor/
    
     - name: Deploy on AWS EC2
       run: |
-        ssh -o StrictHostKeyChecking=no -i private_key.pem ubuntu@ec2-18-234-150-209.compute-1.amazonaws.com << 'EOF'
+        ssh -o StrictHostKeyChecking=no -i private_key.pem ubuntu@ec2-54-81-143-14.compute-1.amazonaws.com << 'EOF'
           cd /home/ubuntu/collaborative-code-editor
           # Remove all containers
           docker rm -f $(docker ps -aq) || true 
