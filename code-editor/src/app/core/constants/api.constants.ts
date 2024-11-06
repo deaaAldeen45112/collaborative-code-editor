@@ -10,7 +10,7 @@ const INVITATION_PATH = `/invitations`;
 const STATISTIC_PATH = `${BASE_URL}/statistic`;
 const COMMENT_PATH = `/comments`;
 const DISCUSSION_PATH = `/discussions`;
-//
+
 export const API_ENDPOINTS = {
   BASE_URL,
   DOMAIN,
