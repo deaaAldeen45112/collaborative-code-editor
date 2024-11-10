@@ -113,22 +113,18 @@ jobs:
 
 
 
-          # Remove all containers
-          docker rm -f $(docker ps -aq) || true 
-
-          # Remove all images
-          docker rmi -f $(docker images -q) || true 
-
-          # Remove all volumes
-          docker volume rm $(docker volume ls -q) || true 
-          docker volume prune -f 
-          #Remove all
-          docker system prune -a -f
- 
-          docker pull gcc:latest
-
-          # Start containers in detached mode
-          docker-compose up --build -d
+          # Refresh permissions to activate Docker group membership
+          newgrp docker << END
+            # Docker cleanup and startup commands here without sudo
+            docker rm -f $(docker ps -aq) || true 
+            docker rmi -f $(docker images -q) || true 
+            docker volume rm $(docker volume ls -q) || true 
+            docker volume prune -f 
+            docker system prune -a -f
+    
+            docker pull gcc:latest
+            docker-compose up --build -d
+          END
         EOF
 
     - name: Cleanup SSH key
