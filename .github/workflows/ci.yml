@@ -105,6 +105,9 @@ jobs:
             sudo chmod +x /usr/local/bin/docker-compose
           fi
 
+          # Add the ubuntu user to the docker group
+          sudo usermod -aG docker ubuntu
+          
           # Remove all containers
           docker rm -f $(docker ps -aq) || true 
 
