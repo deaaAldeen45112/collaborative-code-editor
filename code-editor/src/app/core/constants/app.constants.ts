@@ -14,7 +14,7 @@ export const THIRTY_SECONDS=30;
 
 // href="http://localhost:4200/admin/dashboard?theme=dark"
 
-export const LOCAL_HOST="http://ec2-54-81-143-14.compute-1.amazonaws.com:4200"
-export const LIGHT_THEME="http://ec2-54-81-143-14.compute-1.amazonaws.com:4200?theme=light"
-export const DARK_THEME="http://ec2-54-81-143-14.compute-1.amazonaws.com:4200?theme=dark"
+export const LOCAL_HOST="http://ec2-3-91-203-191.compute-1.amazonaws.com:4200"
+export const LIGHT_THEME="http://ec2-3-91-203-191.compute-1.amazonaws.com:4200?theme=light"
+export const DARK_THEME="http://ec2-3-91-203-191.compute-1.amazonaws.com:4200?theme=dark"
 
