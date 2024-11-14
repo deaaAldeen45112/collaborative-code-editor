@@ -8,6 +8,7 @@ The Collaborative Code Editor is a web-based platform that enables multiple user
 - [Technologies Used](#technologies-used)
 - [Video Demo](#video-demo)
 - [DevOps and Deployment](#devops-and-deployment)
+- [Project Report](#project-report)
 
 ---
 
@@ -62,6 +63,10 @@ The DevOps setup for this project ensures scalability, ease of deployment, and s
 - **AWS Deployment**: The application is deployed on AWS, ensuring scalability and reliability.
 - **Nginx Reverse Proxy**: Nginx is configured as a reverse proxy for handling HTTP and WebSocket requests, managing SSL termination, and ensuring secure communication between clients and the backend.
 - **SSL Setup**: SSL/TLS is configured in Nginx to secure HTTP and WebSocket communications, enhancing data privacy and security.
+
+## Project Report
+
+For a detailed overview of the design and implementation of the Collaborative Code Editor, please refer to the [Project Report](https://github.com/deaaAldeen45112/collaborative-code-editor/blob/main/DeyaAldeen_ProjectReport.pdf).
 
 ---
 
