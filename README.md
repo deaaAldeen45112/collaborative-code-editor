@@ -30,8 +30,8 @@ The primary objectives of the Collaborative Code Editor project are as follows:
 
 ## Features
 
-- **Real-Time Collaborative Editing**: Synchronized editing via WebSocket with HTTP polling for manual refresh.
-- **Role-Based Access Control (RBAC)**: User roles (Admin, Editor, Viewer) manage access and editing permissions.
+- **Real-Time Collaborative Editing**: Synchronized editing via WebSocket.
+- **Role-Based Access Control (RBAC)**: User roles (Admin, Coder, Owner) manage access and editing permissions.
 - **Real-Time Version Control**: Tracks changes with detailed logs and reversion capabilities to allow collaborative versioning.
 - **Code Execution**: Multi-language support using Docker containers.
 - **Code Review and Comments**: Inline commenting for collaborative review.
