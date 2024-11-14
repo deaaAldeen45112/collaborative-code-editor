@@ -19,8 +19,8 @@ The primary objectives of the Collaborative Code Editor project are as follows:
 1. **Real-Time Collaboration**  
    Enable a multi-user environment where changes made by any user are instantly reflected across all sessions in real-time.
 
-2. **Version Control**  
-   Provide advanced version control with change tracking, user contribution logs, and the ability to revert to previous versions, ensuring reliability and data integrity.
+2. **Real-Time Versioning**  
+   Implement advanced version control with real-time tracking, user contribution logs, and the ability to revert to previous versions, ensuring reliability and data integrity across collaborative sessions.
 
 3. **Code Execution**  
    Support code execution in multiple programming languages directly in the editor, with real-time display of output and error messages for a seamless development experience.
@@ -32,7 +32,7 @@ The primary objectives of the Collaborative Code Editor project are as follows:
 
 - **Real-Time Collaborative Editing**: Synchronized editing via WebSocket with HTTP polling for manual refresh.
 - **Role-Based Access Control (RBAC)**: User roles (Admin, Editor, Viewer) manage access and editing permissions.
-- **Version Control**: Tracks changes with detailed logs and reversion capabilities.
+- **Real-Time Version Control**: Tracks changes with detailed logs and reversion capabilities to allow collaborative versioning.
 - **Code Execution**: Multi-language support using Docker containers.
 - **Code Review and Comments**: Inline commenting for collaborative review.
 - **OAuth Authentication**: Supports Google and GitHub login for secure access.
