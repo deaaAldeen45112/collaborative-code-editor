@@ -44,7 +44,7 @@ The primary objectives of the Collaborative Code Editor project are as follows:
 - **Frontend**: Angular, HTML, CSS, JavaScript
 - **Database**: MySQL
 - **Authentication**: OAuth 2.0 (Google/GitHub)
-- **Real-Time Communication**: WebSocket and HTTP polling
+- **Real-Time Communication**: WebSocket
 - **Containerization**: Docker
 - **Web Server**: Nginx
 - **CI/CD**: GitHub Actions
